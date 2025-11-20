@@ -16,8 +16,8 @@ public class RadixSort {
     }
 
     private static void countingSort(int[] arr, int exp) {
-        int output[] = new int[arr.length];
-        int count[] = new int[10];
+        int[] output = new int[arr.length];
+        int count[] = new int[5];
 
         for (int i = 0; i < arr.length; i++) {
             int index = (arr[i] / exp) % 10;
@@ -29,7 +29,7 @@ public class RadixSort {
 
         for (int i = arr.length - 1; i >= 0; i--) {
             int index = (arr[i] / exp) % 10;
-            output[count[index] - 1] = arr[i];
+            output[count[index] - 1] = arr[i]; 
             count[index]--;
         }
 
