@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -64,16 +65,27 @@ public class RadixSort {
         return arr;
     }
 
+    private static void saveNumbersToFile(int[] arr, String path) throws IOException {
+        FileWriter fw = new FileWriter(path);
+
+        for (int num : arr) {
+            fw.write(num + " ");
+        }
+
+        fw.close();
+    }
+
     private static void printArray(int[] arr) {
         for (int v : arr) System.out.print(v + " ");
         System.out.println();
     }
 
     public static void main(String[] args) {
-        String ruta = "C://archivos//numeros.txt";
+        String rutaEntrada = "numeros.txt"; // tu archivo de entrada
+        String rutaSalida = "numerosRS.txt"; // archivo generado
 
         try {
-            int[] data = readNumbersFromFile(ruta);
+            int[] data = readNumbersFromFile(rutaEntrada);
 
             System.out.println("Datos originales:");
             printArray(data);
@@ -83,8 +95,13 @@ public class RadixSort {
             System.out.println("\nDatos ordenados (ascendente):");
             printArray(data);
 
+            saveNumbersToFile(data, rutaSalida);
+
+            System.out.println("\nArchivo generado en:");
+            System.out.println(rutaSalida);
+
         } catch (IOException e) {
-            System.out.println("Error al leer archivo: " + e.getMessage());
+            System.out.println("Error al leer o escribir archivo: " + e.getMessage());
         }
     }
 }
