@@ -9,15 +9,14 @@ public class RadixSort {
 
     private static int getMax(int[] arr) {
         int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++)
             if (arr[i] > max) max = arr[i];
-        }
         return max;
     }
 
     private static void countingSort(int[] arr, int exp) {
         int[] output = new int[arr.length];
-        int count[] = new int[5];
+        int[] count = new int[10];
 
         for (int i = 0; i < arr.length; i++) {
             int index = (arr[i] / exp) % 10;
@@ -26,14 +25,15 @@ public class RadixSort {
 
         for (int i = 1; i < 10; i++)
             count[i] += count[i - 1];
-
-        for (int i = arr.length - 1; i >= 0; i--) {
+        for (int i = 0; i < arr.length; i++) {
             int index = (arr[i] / exp) % 10;
-            output[count[index] - 1] = arr[i]; 
+            output[count[index] - 1] = arr[i];
             count[index]--;
         }
 
-        for (int i = 0; i < arr.length; i++) arr[i] = output[i];
+
+        for (int i = 0; i < arr.length; i++)
+            arr[i] = output[i];
     }
 
     public static void main(String[] args) {
